@@ -1,23 +1,39 @@
-import React, { useState, useEffect } from "react"; // Don't forget to import React and useEffect
-
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { StarIcon } from "@heroicons/react/24/solid";
-import Currency from "react-currency-formatter"; 
+import Currency from "react-currency-formatter";
+import { useDispatch } from "react-redux";
+import { addToBasket } from "../slices/basketSlice";
 
 const MAX_RATING = 5;
 const MIN_RATING = 1;
 
-function Product({ id, title, price, description, category, image }) {
-  const [rating, setRating] = useState(0); // Initialize rating with 0 initially
-  const [hasPrime, setHasPrime] = useState(false); // Initialize hasPrime with false initially
+function Product({ 
+  id, 
+  title, 
+  price, 
+  description, 
+  category, 
+  image
+}) {
+  const dispatch = useDispatch();
+  const [rating, setRating] = useState();
+  const [hasPrime, setHasPrime] = useState();
 
   useEffect(() => {
-    // This will run only on the client side after the initial render
     setRating(
       Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
     );
     setHasPrime(Math.random() < 0.5);
-  }, []); // Empty dependency array ensures it runs only once after initial render
+  }, []);
+
+  const addItemToBasket = () => {
+    const product = {
+      id, title, price, description, category, image,hasPrime,rating
+    };
+
+    dispatch(addToBasket(product));
+  };
 
   return (
     <div className="relative flex flex-col m-5 bg-white z-30 p-10">
@@ -47,7 +63,7 @@ function Product({ id, title, price, description, category, image }) {
         </div>
       )}
 
-      <button className="mt-auto button">Add to Basket</button>
+      <button onClick={addItemToBasket} className="mt-auto button">Add to Basket</button>
     </div>
   );
 }

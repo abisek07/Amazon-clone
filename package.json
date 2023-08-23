@@ -10,10 +10,11 @@
     "@heroicons/react": "^2.0.18",
     "@reduxjs/toolkit": "1.9.5",
     "@tailwindcss/line-clamp": "^0.4.4",
-    "firebase": "^10.1.0",
+    "firebase": "^10.2.0",
     "firebase-admin": "^11.10.1",
     "install": "^0.13.0",
     "next": "^13.4.16",
+    "next-auth": "^4.23.1",
     "npm": "^9.8.1",
     "react": "18.2.0",
     "react-currency-formatter": "^1.1.0",
@@ -24,6 +25,7 @@
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^10.2.5",
+    "circular-dependency-plugin": "^5.2.2",
     "postcss": "^8.2.15",
     "tailwindcss": "^3.3.3"
   }
